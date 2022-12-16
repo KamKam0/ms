@@ -1,0 +1,20 @@
+{
+  "name": "@kamkam1_0/ms",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KamKam0/ms.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KamKam0/ms/issues"
+  },
+  "keywords": ["Youtube", "Deezer", "Spotify", "Soundcloud", "Search"],
+  "homepage": "https://github.com/KamKam0/ms",
+  "author": "KamKam <kamkam.dev.contact@gmail.com>",
+  "license": "BSD 2"
+}
