@@ -42,4 +42,35 @@ module.exports = (data) => {
     }else return NaN
 }
 
+module.exports.music = (seconds) => {
+    if(isNaN(seconds)) return NaN
+    let minute = 0
+    let heure = 0
+    let second = seconds
+    if(seconds > 60){
+        do{
+            seconds = seconds - 60
+            second = second - 60
+            minute = minute + 1
+                    
+        }while(seconds > 60 || seconds === 60)
+        if(minute > 60){
+            let minutes = minute
+            do{
+                minute = minute - 60
+                minutes = minutes - 60
+                heure = heure + 1
+                
+            }while(minute > 60 || minute === 60)
+            if(second < 10) second = "0" + second.toString()
+            else if(second.toString().length === 1) second =  second.toString() + "0"
+            return `${heure}H ${minutes}m ${second}s`
+        }else{
+            if(second < 10) return `${minute}.0${second} minutes`
+            else if(second.toString().length === 1) return `${minute}.${second}0 minutes `
+            else return `${minute}.${second} minutes`
+        }
+    }else return `${Number(seconds)} secondes`
+}
+
 exports.version = require("./package.json").version
