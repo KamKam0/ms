@@ -1,3 +1,8 @@
+/**
+ * 
+ * @param {string|number} data 
+ * @returns {string}
+ */
 module.exports = (data) => {
     if(typeof data === "number"){
         if(data < 1000) return `${data} milliseconds`
@@ -42,6 +47,11 @@ module.exports = (data) => {
     }else return NaN
 }
 
+/**
+ * 
+ * @param {number} seconds 
+ * @returns {string}
+ */
 module.exports.music = (seconds) => {
     if(isNaN(seconds)) return NaN
     let minute = 0
