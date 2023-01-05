@@ -19,3 +19,12 @@ npm install @kamkam1_0/ms
     let timeInString = ms("4d")
     //Expected Output: 345600000
 ```
+
+## Converting a number into a string with music format
+```js
+    const ms = require("@kamkam1_0/ms")
+    let timeInString = ms.music(26004)
+    //Expected Output: 7H 13m 24s
+    let timeInString = ms.music(2600)
+    //Expected Output: 43.20 minutes
+```
