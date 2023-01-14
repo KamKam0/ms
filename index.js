@@ -1,7 +1,7 @@
 /**
  * 
  * @param {string|number} data 
- * @returns {string}
+ * @returns {string|number}
  */
 module.exports = (data) => {
     if(typeof data === "number"){
