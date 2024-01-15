@@ -25,25 +25,53 @@ module.exports = (data) => {
         }else return NaN
     }
     else if(typeof data === "string"){
-        let type = data.split("").filter(str => isNaN(str))
-        if(type[1] || !type[0]) return NaN
-        switch(type[0]){
-            case("s"):
-                return data.slice(0, -1) * 1000
-            break;
-            case("m"):
-                return data.slice(0, -1) * 1000 * 60
-            break;
-            case("h"):
-                return data.slice(0, -1) * 1000 * 60 * 60
-            break;
-            case("d"):
-                return data.slice(0, -1) * 1000 * 60 * 60 * 24
-            break;
-            default:
-                return NaN
-            break;
-        }
+        let total = 0
+
+        let rawIds = data
+        .split("")
+        .filter(str => isNaN(str) && data.split(' ').find(element => element.includes(str) && element.length > 1 && !isNaN(element.split(str)[0])))
+
+        let ids = [...new Set(rawIds)]
+
+        ids
+        .forEach(strId => {
+            let multiplication = 0
+            switch(strId){
+                case("s"):
+                    multiplication = 1000
+                break;
+                case("m"):
+                    multiplication = 1000 * 60
+                break;
+                case("h"):
+                    multiplication = 1000 * 60 * 60
+                break;
+                case("d"):
+                    multiplication = 1000 * 60 * 60 * 24
+                break;
+                case("w"):
+                    multiplication = 1000 * 60 * 60 * 24 * 7
+                break;
+                case("mo"):
+                    multiplication = 1000 * 60 * 60 * 24 * 7 * 4
+                break;
+                case("y"):
+                    multiplication = 1000 * 60 * 60 * 24 * 7 * 4 * 12
+                break;
+                default:
+                    multiplication = 1
+                break;
+            }
+
+            let originalNumber = data
+            .split(' ')
+            .find(element => element.includes(strId))
+            .split(strId)[0]
+
+            total += multiplication * originalNumber
+        })
+
+        return total
     }else return NaN
 }
 
@@ -58,20 +86,18 @@ module.exports.music = (seconds) => {
     let heure = 0
     let second = seconds
     if(seconds > 60){
-        do{
+        while(seconds >= 60){
             seconds = seconds - 60
             second = second - 60
             minute = minute + 1
-                    
-        }while(seconds > 60 || seconds === 60)
+        }
         if(minute > 60){
             let minutes = minute
-            do{
+            while(minute >= 60){
                 minute = minute - 60
                 minutes = minutes - 60
                 heure = heure + 1
-                
-            }while(minute > 60 || minute === 60)
+            }
             if(second < 10) second = "0" + second.toString()
             else if(second.toString().length === 1) second =  second.toString() + "0"
             return `${heure}H ${minutes}m ${second}s`
